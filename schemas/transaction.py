@@ -7,6 +7,11 @@ class TransactionCreate(BaseModel):
     type: str  # "deposit" or "withdrawal"
     category: Optional[str] = "general"
 
+class TransferCreate(BaseModel):
+    amount: float = Field(..., gt=0)
+    destination_user_id: int
+    category: Optional[str] = "transfer"
+
 class TransactionResponse(BaseModel):
     id: int
     from_user: int | None
